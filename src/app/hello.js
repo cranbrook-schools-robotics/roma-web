@@ -1,7 +1,7 @@
 require('./hello.scss');
 
 export const hello = {
-  template: require('./hello.html'),
+  template: require('./hello.pug'),
 
   /** @ngInject */
   controller($log, Organization) {
@@ -25,7 +25,6 @@ export const hello = {
     this.organization = null;
     Organization.findOne({filter: {include: includeSpec}}).$promise
     .then(result => {
-      $log.info(result);
       self.organization = result;
       self.state.isLoading = false;
     });

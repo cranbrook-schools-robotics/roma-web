@@ -1,0 +1,19 @@
+div(ng-if='$ctrl.state.isLoading')
+  h2 Loading Organization Information
+div(ng-if='! $ctrl.state.isLoading')
+  h1 {{ $ctrl.organization.name }}
+div(layout='row', layout-fill='', ng-cloak='')
+  section(ng-repeat='division in $ctrl.organization.divisions')
+    h1 {{ division.name }}
+    div(layout='', layout-wrap='', layout-padding='', layout-margin='', layout-align='center')
+      md-card(ng-repeat='team in division.teams')
+        md-card-title
+          md-card-title-text
+            span.md-headline {{ team.numericName }}
+            |  
+            span.md-subhead {{ team.name }}
+          md-card-title-media
+            .md-media-sm.card-media
+        md-card-actions(layout='row', layout-align='end center')
+          md-button Action 1
+          md-button Action 2

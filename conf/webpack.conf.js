@@ -43,6 +43,12 @@ module.exports = {
         loaders: [
           'html-loader'
         ]
+      },
+      {
+        test: /.pug$/,
+        loaders: [
+          'pug-ng-html-loader'
+        ]
       }
     ]
   },
