@@ -1,17 +1,13 @@
 import angular from 'angular';
-
-import {hello} from './app/hello';
-
 import 'angular-ui-router';
 import 'angular-resource';
 import 'angular-material';
 
+import './generated/lb-services.generated';
+import {hello} from './app/hello';
 import routesConfig from './routes';
 
-import './generated/lb-services.generated';
-
 import './index.scss';
-import './app/hello.scss';
 
 export const app = 'app';
 

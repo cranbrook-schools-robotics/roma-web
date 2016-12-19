@@ -1,3 +1,5 @@
+require('./hello.scss');
+
 export const hello = {
   template: require('./hello.html'),
 
