@@ -1,17 +1,23 @@
+require('./organization-view.scss');
+
 class OrganizationViewController {
 
-  /** @ngInject */
-  constructor($log, $stateParams, ROrganization) {
+  constructor($log, $stateParams, Organization) {
     const self = this;
     self.$log = $log;
-    $log.info($stateParams);
     self.state = {
-      isLoading: false
+      isLoading: true
     };
-    self.organization = ROrganization.findMine();
+    self.organization = null;
+    Organization.findMine()
+    .then(result => {
+      self.organization = result;
+      self.state.isLoading = false;
+    });
   }
 
   go(teamObj) {
+    const self = this;
     self.$log.info(teamObj);
   }
 }

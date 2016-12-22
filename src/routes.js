@@ -9,17 +9,12 @@ function routesConfig($stateProvider, $urlRouterProvider, $locationProvider) {
     {
       name: 'organization-view',
       url: '/',
-      component: 'organization-view'
+      component: 'organizationView'
       // resolve: {
       //   organization(ROrganization) {
       //     return ROrganization.findMine();
       //   }
       // }
-    },
-    {
-      name: 'hello',
-      url: '/hello',
-      component: 'hello'
     }
   ];
 
