@@ -3,27 +3,18 @@ require('./hello.scss');
 export const hello = {
   template: require('./hello.pug'),
 
-  /** @ngInject */
   controller($log, Organization) {
     const self = this;
-    this.state = {
+    self.state = {
       isLoading: true
     };
-    const includeSpec = {
-      relation: 'divisions',
-      scope: {
-        include: {
-          relation: 'teams',
-          scope: {
-            include: {
-              relation: 'members'
-            }
-          }
-        }
-      }
+    self.organization = null;
+
+    self.go = function (teamObj) {
+      $log.info(teamObj);
     };
-    this.organization = null;
-    Organization.findOne({filter: {include: includeSpec}}).$promise
+
+    Organization.findMine()
     .then(result => {
       self.organization = result;
       self.state.isLoading = false;
