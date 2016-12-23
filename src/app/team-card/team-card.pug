@@ -1,0 +1,10 @@
+md-card.team-card
+  md-card-title
+    md-card-title-text
+      span.md-headline {{ $ctrl.team.numericName }}
+      |  
+      span.md-subhead {{ $ctrl.team.name }}
+    md-card-title-media
+      .md-media-sm.card-media
+  md-card-actions(layout='row', layout-align='end center')
+    md-button(ng-click='null') Go

@@ -1,4 +1,7 @@
+import {rootView} from './app/root-view/root-view';
 import {organizationView} from './app/organization-view/organization-view';
+import {divisionView} from './app/division-view/division-view';
+import {teamView} from './app/team-view/team-view';
 
 export default routesConfig;
 
@@ -9,10 +12,28 @@ function routesConfig($stateProvider, $urlRouterProvider, $locationProvider) {
 
   const states = [
     {
-      name: 'organization-view',
+      name: 'root',
+      url: '/',
+      component: 'rootView',
+      resolve: rootView.resolve
+    },
+    {
+      name: 'organization',
       url: '/{organizationURI}',
       component: 'organizationView',
       resolve: organizationView.resolve
+    },
+    {
+      name: 'organization.division',
+      url: '/{divisionURI}',
+      component: 'divisionView',
+      resolve: divisionView.resolve
+    },
+    {
+      name: 'organization.division.team',
+      url: '/{teamURI}',
+      component: 'teamView',
+      resolve: teamView.resolve
     }
   ];
 

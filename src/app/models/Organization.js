@@ -37,6 +37,10 @@ class Organization {
   findByURI(uri) {
     return this.findOne({where: {uri}});
   }
+
+  list() {
+    return this.LBOrganization.find().$promise;
+  }
 }
 
 export default Organization;
