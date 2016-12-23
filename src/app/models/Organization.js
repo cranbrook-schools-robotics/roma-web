@@ -20,10 +20,22 @@ class Organization {
     };
   }
 
+  findOne(filter) {
+    if (!filter) {
+      filter = {};
+    }
+    if (!filter.include) {
+      filter.include = this.includeSpec;
+    }
+    return this.LBOrganization.findOne({filter}).$promise;
+  }
+
   findMine() {
-    const self = this;
-    const findFilter = {filter: {include: self.includeSpec}};
-    return self.LBOrganization.findOne(findFilter).$promise;
+    return this.findOne();
+  }
+
+  findByURI(uri) {
+    return this.findOne({where: {uri}});
   }
 }
 
