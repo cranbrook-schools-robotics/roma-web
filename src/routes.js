@@ -1,3 +1,5 @@
+import {organizationView} from './app/organization-view/organization-view';
+
 export default routesConfig;
 
 /** @ngInject */
@@ -8,13 +10,9 @@ function routesConfig($stateProvider, $urlRouterProvider, $locationProvider) {
   const states = [
     {
       name: 'organization-view',
-      url: '/',
-      component: 'organizationView'
-      // resolve: {
-      //   organization(ROrganization) {
-      //     return ROrganization.findMine();
-      //   }
-      // }
+      url: '/{organizationURI}',
+      component: 'organizationView',
+      resolve: organizationView.resolve
     }
   ];
 

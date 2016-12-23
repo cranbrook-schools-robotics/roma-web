@@ -1,7 +1,6 @@
-div(ng-if='$ctrl.state.isLoading')
-  h2 Loading Organization Information
-div(ng-if='! $ctrl.state.isLoading')
-  h1 {{ $ctrl.organization.name }}
+h1(ng-if='!$ctrl.organization') Could not find that organization
+
+h1 {{ $ctrl.organization.name }}
 div(layout='row', layout-fill='', ng-cloak='')
   section(ng-repeat='division in $ctrl.organization.divisions')
     h1 {{ division.name }}
@@ -16,3 +15,4 @@ div(layout='row', layout-fill='', ng-cloak='')
             .md-media-sm.card-media
         md-card-actions(layout='row', layout-align='end center')
           md-button(ng-click='$ctrl.go(team)') Go
+
