@@ -6,7 +6,7 @@ export const teamView = {
   template: require('./team-view.pug'),
   controller: TeamViewController,
   bindings: {
-    team: '<team'
+    team: '<'
   },
   resolve: {
     team(Team, $stateParams) {

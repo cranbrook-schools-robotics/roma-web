@@ -1,15 +1,35 @@
-md-toolbar.md-hue-3
-  .md-toolbar-tools {{ $ctrl.division.name }}
-md-list(flex)
-  md-list-item.md-2-line(
-    ng-repeat='team in $ctrl.division.teams'
-    ui-sref='team({teamId: team.id})'
-  )
-    .md-list-item-text
-      h3 {{ team.numericName }}
-      p(ng-show='team.name') {{ team.name }}
-//- div(layout='', layout-wrap='', layout-padding='', layout-margin='', layout-align='center')
-  team-card(
-    ng-repeat='team in division.teams'
-    team='team'
-  )
+h2 {{ $ctrl.division.name }}
+
+md-content
+  table.team-meet-matrix
+    thead
+      tr
+        td.body-bg
+          md-button.md-icon-button(aria-label='add meet'
+            ng-click='$ctrl.addMeet()'
+          )
+            md-icon add_circle
+        td.body-bg
+        th(ng-repeat='team in $ctrl.division.teams')
+          | {{ team.numericName }}
+    tbody
+      tr(ng-repeat='meet in $ctrl.meets')
+        td: md-button.md-icon-button(aria-label='delete meet'
+          ng-click='$ctrl.deleteMeet(meet)'
+        )
+          md-icon remove_circle
+        th {{ meet.date | amDateFormat:'YYYY.MM.DD' }}
+        td(
+          ng-repeat='team in $ctrl.division.teams'
+          ng-init='isGoing = $ctrl.isTeamGoing(team, meet)'
+        )
+          md-menu
+            md-button.md-icon-button(aria-label='menu'
+              ng-class='$ctrl.isTeamGoing(team, meet) ? "md-primary" : "md-secondary"'
+              ng-click='$ctrl.openMenu($mdOpenMenu, $event)'
+            )
+              md-icon {{ isGoing ? 'check_circle' : 'arrow_drop_down'}}
+            md-menu-content
+              md-menu-item: md-button(aria-label='1') {{ isGoing ? 'Not ' : '' }} Going
+              //- md-menu-item: md-button(aria-label='2') Something 2
+              //- md-menu-item: md-button(aria-label='3') Something 3

@@ -9,10 +9,15 @@ class Organization {
       relation: 'divisions',
       scope: {
         include: {
-          relation: 'teams',
+          relation: 'subdivisions',
           scope: {
             include: {
-              relation: 'members'
+              relation: 'teams',
+              scope: {
+                include: {
+                  relation: 'members'
+                }
+              }
             }
           }
         }

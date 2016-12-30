@@ -25,13 +25,13 @@ function routesConfig($stateProvider, $urlRouterProvider, $locationProvider) {
     },
     {
       name: 'organization.division',
-      url: '/{divisionURI}',
+      url: '/{divisionURI:.+}',
       component: 'divisionView',
       resolve: divisionView.resolve
     },
     {
-      name: 'organization.division.team',
-      url: '/{teamURI}',
+      name: 'organization.team',
+      url: '/{teamURI:.+}',
       component: 'teamView',
       resolve: teamView.resolve
     }

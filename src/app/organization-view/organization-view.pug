@@ -1,8 +1,32 @@
+md-toolbar
+  .md-toolbar-tools
+    h1 {{ $ctrl.organization.name }}
 h1(ng-if='!$ctrl.organization') Could not find that organization
 
-h1 {{ $ctrl.organization.name }}
-div(layout='row' layout-fill layout-margin layout-padding ng-cloak)
-  section(ng-repeat='division in $ctrl.organization.divisions')
-    md-button(ui-sref='division({divisionURI: division.uri})')
-    division-view(division='division')
-
+div(layout='row' flex)
+  md-sidenav.md-sidenav-left(
+    md-component-id='organization-sidenav'
+    md-is-locked-open='$mdMedia("gt-md")'
+    md-whiteframe='4'
+  )
+    md-button.sidenav-toggle(
+      ng-click='$ctrl.toggleSidenav()'
+      aria-label='toggle sidenav'
+    ) Toggle
+    section(ng-repeat='division in $ctrl.organization.divisions')
+      md-toolbar
+        md-button(ui-sref='organization.division({divisionURI: division.uri})')
+          .md-toolbar-tools {{ division.name }}
+      md-list.md-dense(flex)
+        div(ng-repeat='subdivision in division.subdivisions')
+          md-subheader(ng-show='subdivision.name') {{ subdivision.name }}
+          md-list-item(
+            ng-repeat='team in subdivision.teams'
+            ui-sref='organization.team({teamURI: team.numericName})'
+          )
+            .md-list-item-text
+              h3 {{ team.numericName }}
+                small {{ team.name }}
+          md-divider
+  md-content(flex layout-padding)
+    ui-view
