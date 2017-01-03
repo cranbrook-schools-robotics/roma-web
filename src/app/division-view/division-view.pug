@@ -10,7 +10,7 @@ md-content
           )
             md-icon add_circle
         td.body-bg
-        th(ng-repeat='team in $ctrl.division.teams')
+        th(ng-repeat='team in $ctrl.division.allTeams')
           | {{ team.numericName }}
     tbody
       tr(ng-repeat='meet in $ctrl.meets')
@@ -20,7 +20,7 @@ md-content
           md-icon remove_circle
         th {{ meet.date | amDateFormat:'YYYY.MM.DD' }}
         td(
-          ng-repeat='team in $ctrl.division.teams'
+          ng-repeat='team in $ctrl.division.allTeams'
           ng-init='isGoing = $ctrl.isTeamGoing(team, meet)'
         )
           md-menu

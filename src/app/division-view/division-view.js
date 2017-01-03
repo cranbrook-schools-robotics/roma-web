@@ -19,7 +19,7 @@ class DivisionViewController {
 
   randomTeams() {
     const ts = [];
-    this.division.teams.forEach(t => {
+    this.division.allTeams.forEach(t => {
       if (Math.random() < 0.25) {
         ts.push(t);
       }
@@ -55,9 +55,12 @@ export const divisionView = {
     division: '<'
   },
   resolve: {
-    division(organization, $stateParams) {
+    division(organization, $stateParams, $log) {
       const targetURI = $stateParams.divisionURI;
       const thisDivision = organization.divisions.find(d => d.uri === targetURI);
+      thisDivision.allTeams = _.flatten(thisDivision.subdivisions.map(s => s.teams));
+      $log.info(thisDivision.subdivisions.map(s => s.teams));
+      $log.info(thisDivision.allTeams);
       // $log.info(thisDivision);
       return Promise.resolve(thisDivision);
     }

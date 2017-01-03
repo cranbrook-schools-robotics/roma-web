@@ -2,11 +2,10 @@ import angular from 'angular';
 import './lb-services.generated';
 
 import Organization from './Organization';
+import Venue from './Venue';
 
 export const moduleName = 'roma.models';
-angular
-// export default angular
-  .module(moduleName, ['lbServices'])
+angular.module(moduleName, ['lbServices'])
   .service('Organization', Organization)
-  // .name
+  .service('Venue', Venue)
 ;

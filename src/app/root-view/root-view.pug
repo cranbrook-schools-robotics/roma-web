@@ -1,9 +1,23 @@
 h1 Roma
-md-toolbar
-  | All Organizations
-md-content
-  md-list(flex)
-    md-list-item(
-      ng-repeat='org in $ctrl.organizations'
-      ui-sref='organization({organizationURI: org.uri})'
-    ) {{ org.name }}
+
+div(layout='row' layout-sm='column')
+  section.root-section(flex)
+    md-toolbar: .md-toolbar-tools
+      h2 Organizations
+    md-list
+      md-list-item(
+            ng-repeat='org in $ctrl.organizations'
+            ui-sref='organization({organizationURI: org.uri})')
+        | {{ org.name }}
+  section.root-section(flex)
+    md-toolbar: .md-toolbar-tools
+      h2 Venues
+      md-button.md-icon-button(
+            aria-label='create venue'
+            ng-click='$ctrl.createVenue()')
+        md-icon add_circle
+    md-list
+      md-list-item(
+        ng-repeat='venue in $ctrl.venues'
+      )
+        h3 {{ venue.name }}

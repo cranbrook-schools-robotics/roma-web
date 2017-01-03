@@ -11,14 +11,24 @@ class Organization {
         include: {
           relation: 'subdivisions',
           scope: {
-            include: {
-              relation: 'teams',
-              scope: {
-                include: {
-                  relation: 'members'
+            include: [
+              {
+                relation: 'teams',
+                scope: {
+                  include: {
+                    relation: 'members'
+                  }
+                }
+              },
+              {
+                relation: 'meets',
+                scope: {
+                  include: {
+                    relation: 'venue'
+                  }
                 }
               }
-            }
+            ]
           }
         }
       }
